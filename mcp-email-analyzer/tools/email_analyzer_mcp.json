@@ -1,0 +1,158 @@
+{
+  "mcpServers": {
+    "email-analyzer": {
+      "command": "python",
+      "args": ["-m", "src.server"],
+      "cwd": ".",
+      "env": {
+        "PYTHONPATH": "."
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "email_analyze",
+      "description": "Analyze an individual email with sentiment, priority, category, and summary analysis",
+      "server": "email-analyzer",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "email_id": {
+            "type": "string",
+            "description": "Gmail email ID to analyze"
+          },
+          "analysis_types": {
+            "type": "array",
+            "items": {
+              "enum": ["sentiment", "priority", "category", "summary"]
+            },
+            "description": "Types of analysis to perform",
+            "default": ["sentiment", "priority", "category", "summary"]
+          }
+        },
+        "required": ["email_id"]
+      }
+    },
+    {
+      "name": "email_classify",
+      "description": "Classify multiple emails in batch by category, priority, or sentiment",
+      "server": "email-analyzer",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "email_ids": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "List of Gmail email IDs to classify",
+            "maxItems": 50
+          },
+          "classification_type": {
+            "type": "string",
+            "enum": ["category", "priority", "sentiment"],
+            "description": "Type of classification to perform",
+            "default": "category"
+          },
+          "batch_size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20,
+            "description": "Number of emails to process per batch",
+            "default": 10
+          }
+        },
+        "required": ["email_ids"]
+      }
+    },
+    {
+      "name": "email_action",
+      "description": "Execute actions on emails: mark as read, archive, delete, or add labels",
+      "server": "email-analyzer",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "email_ids": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "List of Gmail email IDs to perform action on"
+          },
+          "action": {
+            "type": "string",
+            "enum": ["read", "archive", "delete", "label"],
+            "description": "Action to execute on the emails"
+          },
+          "action_params": {
+            "type": "object",
+            "description": "Additional parameters for the action",
+            "properties": {
+              "label_ids": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Gmail label IDs to apply (required for 'label' action)"
+              }
+            }
+          }
+        },
+        "required": ["email_ids", "action"]
+      }
+    },
+    {
+      "name": "email_search",
+      "description": "Search emails with Gmail query syntax and additional filters",
+      "server": "email-analyzer",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Gmail search query (e.g., 'from:example@gmail.com is:unread')",
+            "default": ""
+          },
+          "filters": {
+            "type": "object",
+            "description": "Additional search filters",
+            "properties": {
+              "sender": {
+                "type": "string",
+                "description": "Filter by sender email address"
+              },
+              "subject_contains": {
+                "type": "string",
+                "description": "Filter by subject containing text"
+              },
+              "date_from": {
+                "type": "string",
+                "format": "date",
+                "description": "Filter emails from this date (YYYY-MM-DD)"
+              },
+              "date_to": {
+                "type": "string",
+                "format": "date",
+                "description": "Filter emails until this date (YYYY-MM-DD)"
+              },
+              "has_attachments": {
+                "type": "boolean",
+                "description": "Filter emails with attachments"
+              },
+              "is_unread": {
+                "type": "boolean",
+                "description": "Filter unread emails"
+              }
+            }
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100,
+            "description": "Maximum number of results to return",
+            "default": 20
+          },
+          "include_analysis": {
+            "type": "boolean",
+            "description": "Include AI analysis (category, priority) in results",
+            "default": false
+          }
+        }
+      }
+    }
+  ]
+}
