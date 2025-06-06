@@ -98,6 +98,7 @@ Agrega a tu configuración de Claude Desktop:
 ## 🛠️ Herramientas MCP
 
 ### email_analyze
+
 Analiza el contenido de un email específico.
 
 ```python
@@ -115,6 +116,7 @@ Analiza el contenido de un email específico.
 ```
 
 ### email_classify
+
 Clasifica emails automáticamente.
 
 ```python
@@ -132,6 +134,7 @@ Clasifica emails automáticamente.
 ```
 
 ### email_action
+
 Ejecuta acciones sobre emails (marcar como leído, archivar, eliminar).
 
 ```python
@@ -151,12 +154,15 @@ Ejecuta acciones sobre emails (marcar como leído, archivar, eliminar).
 ## 📝 Prompts MCP
 
 ### email_analysis_prompt
+
 Prompt para análisis detallado de emails.
 
 ### bulk_classification_prompt
+
 Prompt para clasificación masiva de emails.
 
 ### priority_assessment_prompt
+
 Prompt para evaluación de prioridad de emails.
 
 ## 🔧 Configuración Avanzada
@@ -232,12 +238,6 @@ Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
 - [Google Apps Script](https://developers.google.com/apps-script)
 - [Gmail API](https://developers.google.com/gmail/api)
 
-## 📞 Soporte
+powered by @fmonfasani
 
-- Issues: [GitHub Issues](https://github.com/tu-usuario/mcp-email-analyzer/issues)
-- Documentación: [Docs](https://mcp-email-analyzer.readthedocs.io/)
-- Email: support@mcp-email-analyzer.com
-
----
-
-**Nota**: Este es un proyecto de código abierto diseñado para cumplir con los estándares del Model Context Protocol y ser incluido en el SDK oficial de Python.
+**Nota**: Este es un proyecto de código abierto diseñado para cumplir con los estándares del Model Context Protocol.
