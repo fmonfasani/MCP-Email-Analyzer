@@ -1,0 +1,50 @@
+# requirements-gmail.txt
+# Gmail integration specific dependencies
+# Google API client libraries
+google-api-python-client==2.108.0
+google-auth-httplib2==0.1.1
+google-auth-oauthlib==1.1.0
+google-auth==2.23.4
+
+# HTTP and async support
+aiohttp==3.9.1
+httpx==0.25.2
+
+# Retry and rate limiting
+tenacity==8.2.3
+
+# Caching
+cachetools==5.3.2
+
+# Email parsing
+email-validator==2.1.0
+
+# Configuration management
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# Logging
+structlog==23.2.0
+
+# Core dependencies
+python-dateutil==2.8.2
+typing-extensions==4.8.0
+
+# Development dependencies (optional)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-mock==3.12.0
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Installation instructions:
+# pip install -r requirements-gmail.txt
+
+# For development environment:
+# pip install -r requirements-gmail.txt[dev]
+
+# Note: Make sure you have Python 3.8+ installed
+# Google API credentials file should be placed in the project root
+# or specified via environment variables
+

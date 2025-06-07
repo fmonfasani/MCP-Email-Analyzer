@@ -84,3 +84,93 @@ class RateLimitError(MCPEmailAnalyzerError):
             error_code="RATE_LIMIT_ERROR",
             details=details
         )
+
+# src/server/exceptions.py (expandir - agregar excepciones específicas de Gmail)
+"""
+Custom exceptions for the email analyzer application
+"""
+
+
+class EmailAnalyzerError(Exception):
+    """Base exception for email analyzer"""
+    pass
+
+
+class EmailNotFoundError(EmailAnalyzerError):
+    """Raised when an email is not found"""
+    pass
+
+
+class EmailServiceError(EmailAnalyzerError):
+    """Raised when email service operations fail"""
+    pass
+
+
+class AuthenticationError(EmailAnalyzerError):
+    """Raised when authentication fails"""
+    pass
+
+
+class RateLimitError(EmailAnalyzerError):
+    """Raised when API rate limits are exceeded"""
+    pass
+
+
+class ConfigurationError(EmailAnalyzerError):
+    """Raised when configuration is invalid"""
+    pass
+
+
+class ValidationError(EmailAnalyzerError):
+    """Raised when data validation fails"""
+    pass
+
+
+# Gmail-specific exceptions
+class GmailAuthError(AuthenticationError):
+    """Gmail authentication specific errors"""
+    pass
+
+
+class GmailAPIError(EmailServiceError):
+    """Gmail API specific errors"""
+    
+    def __init__(self, message: str, status_code: int = None, response: dict = None):
+        super().__init__(message)
+        self.status_code = status_code
+        self.response = response
+
+
+class GmailQuotaExceededError(RateLimitError):
+    """Gmail API quota exceeded"""
+    pass
+
+
+class GmailPermissionError(EmailServiceError):
+    """Gmail permission/scope errors"""
+    pass
+
+
+class AttachmentError(EmailServiceError):
+    """Attachment processing errors"""
+    pass
+
+
+class EmailParsingError(EmailServiceError):
+    """Email parsing/mapping errors"""
+    pass
+
+
+class CacheError(EmailAnalyzerError):
+    """Cache operation errors"""
+    pass
+
+
+class NetworkError(EmailServiceError):
+    """Network connectivity errors"""
+    pass
+
+
+class TimeoutError(EmailServiceError):
+    """Request timeout errors"""
+    pass

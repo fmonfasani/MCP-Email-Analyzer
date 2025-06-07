@@ -3,7 +3,6 @@
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass
-
 from .models import EmailData, AnalysisResult, EmailQuery, EmailAction
 
 
@@ -14,7 +13,7 @@ class EmailData:
     subject: str
     sender: str
     content: str
-    timestamp: str
+    timestamp: str  
     labels: List[str]
 
 
